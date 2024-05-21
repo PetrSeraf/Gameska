@@ -2,7 +2,7 @@ package org.example;
 
 public class SettingsScene implements IScene{
     SceneManager manager;
-
+    SettingsManager settingsManager = new SettingsManager();
     @Override
     public void init(SceneManager manager) {this.manager = manager;}
 
@@ -10,6 +10,7 @@ public class SettingsScene implements IScene{
     public void update(String line) {
         if (line.contains("1")) {
             manager.setCurrentScene(1);
+            settingsManager.loop();
         }
 
         if (line.contains("2")) {

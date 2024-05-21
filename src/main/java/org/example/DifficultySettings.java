@@ -10,7 +10,14 @@ public class DifficultySettings implements ISettings{
 
     @Override
     public void update(String line) {
+        switch(line)
+        {
+            case "1","2","3":
+            {
 
+            }
+            default:
+        }
     }
 
     @Override

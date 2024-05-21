@@ -30,6 +30,7 @@ public class SceneManager {
         sceneArray.add(new GameMapScene());
         sceneArray.add(new CreditsScene());
         sceneArray.add(new EncounterScene());
+        sceneArray.add(new SettingsScene());
 
         // Initializing all scenes
         for (IScene scene : sceneArray) {

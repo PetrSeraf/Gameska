@@ -18,6 +18,9 @@ public class MainScene implements IScene {
         if (line.contains("1")) {
             manager.setCurrentScene(1);
         }
+        if (line.contains("2")) {
+            manager.setCurrentScene(4);
+        }
     }
 
     @Override
