@@ -28,6 +28,8 @@ public class SceneManager {
         // Adding scenes to array
         sceneArray.add(new MainScene());
         sceneArray.add(new GameMapScene());
+        sceneArray.add(new CreditsScene());
+        sceneArray.add(new EncounterScene());
 
         // Initializing all scenes
         for (IScene scene : sceneArray) {
