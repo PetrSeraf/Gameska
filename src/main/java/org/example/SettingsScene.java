@@ -1,15 +1,13 @@
 package org.example;
 
-public class MainScene implements IScene {
+public class SettingsScene implements IScene{
     SceneManager manager;
+
     @Override
-    public void init(SceneManager manager) {
-        this.manager = manager;
-    }
+    public void init(SceneManager manager) {this.manager = manager;}
 
     @Override
     public void update(String line) {
-
         if (line.contains("1")) {
             manager.setCurrentScene(1);
         }
@@ -25,11 +23,8 @@ public class MainScene implements IScene {
 
     @Override
     public void render() {
-        System.out.println("Main Menu");
-        System.out.println("[1] Play");
-        System.out.println("[2] Settings");
-        System.out.println("[3] Credits");
-        System.out.println("[4] Exit");
-
+        System.out.println("[1] Difficulty");
+        System.out.println("[2] Audio");
+        System.out.println("[3] Video");
     }
 }
