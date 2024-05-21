@@ -1,15 +1,14 @@
-
 package org.example;
 
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SceneManager {
-    public ArrayList<IScene> sceneArray;
+public class SettingsManager {
+    public ArrayList<ISettings> sceneArray;
     private int index;
 
-    public IScene getCurrentScene() {
+    public ISettings getCurrentScene() {
         return sceneArray.get(index);
     }
 
@@ -20,17 +19,16 @@ public class SceneManager {
         index = newIndex;
     }
 
-    public SceneManager() {
-        sceneArray = new ArrayList<IScene>();
+    public SettingsManager() {
+        sceneArray = new ArrayList<ISettings>();
         index = 0;
 
 
         // Adding scenes to array
-        sceneArray.add(new MainScene());
-        sceneArray.add(new GameMapScene());
+        sceneArray.add((ISettings) new DifficultySettings());
 
         // Initializing all scenes
-        for (IScene scene : sceneArray) {
+        for (ISettings scene : sceneArray) {
             scene.init(this);
         }
     }
