@@ -6,13 +6,16 @@ public class Monster {
     private int defense;
     private int health;
     private int initialHealth;
+    private int baseAttack;
+    private int baseDefense;
+    private int baseHealth;
 
     public Monster(String name, int attack, int defense, int health) {
         this.name = name;
-        this.attack = attack;
-        this.defense = defense;
-        this.health = health;
-        this.initialHealth = health;
+        this.baseAttack = attack;
+        this.baseDefense = defense;
+        this.baseHealth = health;
+        resetStats();
     }
 
     public String getName() {
@@ -31,6 +34,30 @@ public class Monster {
         return health;
     }
 
+    public int getBaseAttack() {
+        return baseAttack;
+    }
+
+    public int getBaseDefense() {
+        return baseDefense;
+    }
+
+    public int getBaseHealth() {
+        return baseHealth;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public void takeDamage(int damage) {
         this.health -= damage;
         if (this.health < 0) {
@@ -44,5 +71,12 @@ public class Monster {
 
     public void resetHealth() {
         this.health = this.initialHealth;
+    }
+
+    public void resetStats() {
+        this.attack = baseAttack;
+        this.defense = baseDefense;
+        this.health = baseHealth;
+        this.initialHealth = baseHealth;
     }
 }

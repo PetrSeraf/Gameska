@@ -8,6 +8,7 @@ public class DifficultySettings implements ISettings {
 
     @Override
     public void init(SettingsManager manager) {
+        this.manager = manager;
     }
 
     @Override
