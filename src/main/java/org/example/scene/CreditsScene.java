@@ -1,4 +1,6 @@
-package org.example;
+package org.example.scene;
+
+import org.example.Managers.SceneManager;
 
 public class CreditsScene implements IScene {
     private SceneManager manager;

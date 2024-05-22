@@ -1,4 +1,6 @@
-package org.example;
+package org.example.scene;
+
+import org.example.Managers.SceneManager;
 
 public interface IScene {
     public void init(SceneManager manager);

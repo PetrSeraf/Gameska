@@ -1,6 +1,6 @@
-package org.example;
+package org.example.scene;
 
-import java.util.Scanner;
+import org.example.Managers.SceneManager;
 
 public class MainScene implements IScene {
     SceneManager manager;

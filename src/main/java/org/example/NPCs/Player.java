@@ -1,14 +1,16 @@
-package org.example;
+package org.example.NPCs;
 
 public class Player {
     private int HP;
     private int DMG;
     private double C_chance;
+    private String name;
 
-    public Player(int HP, int DMG, double C_chance) {
+    public Player(String name,int HP, int DMG, double C_chance) {
         this.HP = HP;
         this.DMG = DMG;
         this.C_chance = C_chance;
+        this.name = name;
     }
 
     public int getHP() {
@@ -17,6 +19,10 @@ public class Player {
 
     public int getDMG() {
         return DMG;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public double getC_chance() {
@@ -29,5 +35,8 @@ public class Player {
 
     public boolean isAlive() {
         return this.HP > 0;
+    }
+    public void resetHP() {
+        this.HP = 100;
     }
 }

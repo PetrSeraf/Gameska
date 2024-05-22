@@ -1,6 +1,8 @@
 
-package org.example;
+package org.example.Managers;
 
+
+import org.example.scene.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
