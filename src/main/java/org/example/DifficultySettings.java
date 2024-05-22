@@ -5,7 +5,6 @@ public class DifficultySettings implements ISettings{
 
     @Override
     public void init(SettingsManager manager) {
-
     }
 
     @Override
@@ -14,7 +13,7 @@ public class DifficultySettings implements ISettings{
         {
             case "1","2","3":
             {
-
+                manager.setCurrentScene(0);
             }
             default:
         }
