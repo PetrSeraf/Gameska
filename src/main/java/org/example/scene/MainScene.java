@@ -11,15 +11,17 @@ public class MainScene implements IScene {
 
     @Override
     public void update(String line) {
-        if (line.contains("4")) {
-            //todo
-        }
-
         if (line.contains("1")) {
             manager.setCurrentScene(1);
         }
         if (line.contains("2")) {
             manager.setCurrentScene(4);
+        }
+        if (line.contains("3")) {
+            manager.setCurrentScene(2);
+        }
+        if (line.contains("4")) {
+            System.exit(0);
         }
     }
 
