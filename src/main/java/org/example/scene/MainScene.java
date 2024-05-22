@@ -29,7 +29,7 @@ public class MainScene implements IScene {
     public void render() {
         System.out.println("Main Menu");
         System.out.println("[1] Play");
-        System.out.println("[2] Settings");
+        System.out.println("[2] Difficulty");
         System.out.println("[3] Credits");
         System.out.println("[4] Exit");
 

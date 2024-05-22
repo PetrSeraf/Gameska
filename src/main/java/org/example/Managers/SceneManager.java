@@ -33,7 +33,7 @@ public class SceneManager {
         sceneArray.add(new GameMapScene());
         sceneArray.add(new CreditsScene());
         sceneArray.add(new EncounterScene());
-        sceneArray.add((IScene) new DifficultySettings());
+        sceneArray.add(new DifficultySettings());
 
         // Initializing all scenes
         for (IScene scene : sceneArray) {
