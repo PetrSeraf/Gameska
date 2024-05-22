@@ -1,6 +1,6 @@
-package org.example;
+package org.example.scene;
 
-import java.util.Scanner;
+import org.example.Managers.SceneManager;
 
 public class MainScene implements IScene {
     SceneManager manager;
@@ -11,9 +11,6 @@ public class MainScene implements IScene {
 
     @Override
     public void update(String line) {
-        if (line.contains("4")) {
-            System.exit(0);
-        }
         if (line.contains("1")) {
             manager.setCurrentScene(1);
         }
@@ -23,7 +20,9 @@ public class MainScene implements IScene {
         if (line.contains("3")) {
             manager.setCurrentScene(2);
         }
-
+        if (line.contains("4")) {
+            System.exit(0);
+        }
     }
 
     @Override

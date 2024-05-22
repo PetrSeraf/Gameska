@@ -1,6 +1,9 @@
-package org.example;
+package org.example.scene.Settings;
 
-public class DifficultySettings implements ISettings{
+import org.example.Managers.SettingsManager;
+import org.example.scene.ISettings;
+
+public class DifficultySettings implements ISettings {
     SettingsManager manager;
 
     @Override

@@ -1,5 +1,8 @@
-package org.example;
+package org.example.Managers;
 
+
+import org.example.scene.Settings.DifficultySettings;
+import org.example.scene.ISettings;
 
 import java.util.ArrayList;
 import java.util.Scanner;

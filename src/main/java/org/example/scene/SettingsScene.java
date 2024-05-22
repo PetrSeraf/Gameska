@@ -1,6 +1,9 @@
-package org.example;
+package org.example.scene;
 
-public class SettingsScene implements IScene{
+import org.example.Managers.SceneManager;
+import org.example.Managers.SettingsManager;
+
+public class SettingsScene implements IScene {
     SceneManager manager;
     SettingsManager settingsManager = new SettingsManager();
     @Override
