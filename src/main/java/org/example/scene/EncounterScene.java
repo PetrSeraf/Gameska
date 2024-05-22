@@ -23,6 +23,8 @@ public class EncounterScene implements IScene {
         monsters.add(new Monster("Imp", 30, 20, 50));
         monsters.add(new Monster("Devil", 40, 15, 40));
         monsters.add(new Monster("Skeleton", 15, 15, 100));
+        monsters.add(new Monster("David",20,20,20));
+        monsters.add(new Monster("Petr",15,15,15));
         monsters.add(new Monster("Wolf", 20, 25, 70));
         monsters.add(new Monster("Squirrel", 100, 50, 10));
         player = new Player("Hero", 100, 20, 10);
