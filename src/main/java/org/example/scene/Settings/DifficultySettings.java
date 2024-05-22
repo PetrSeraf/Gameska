@@ -1,14 +1,14 @@
 package org.example.scene.Settings;
 
-import org.example.Managers.SettingsManager;
-import org.example.scene.ISettings;
+import org.example.Managers.SceneManager;
+import org.example.scene.IScene;
 
-public class DifficultySettings implements ISettings {
-    SettingsManager manager;
+public class DifficultySettings implements IScene {
+    SceneManager manager;
 
     @Override
-    public void init(SettingsManager manager) {
-        this.manager = manager;
+    public void init(SceneManager manager) {
+        this.manager=manager;
     }
 
     @Override

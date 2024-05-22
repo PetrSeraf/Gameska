@@ -3,6 +3,7 @@ package org.example.Managers;
 
 
 import org.example.scene.*;
+import org.example.scene.Settings.DifficultySettings;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -32,7 +33,7 @@ public class SceneManager {
         sceneArray.add(new GameMapScene());
         sceneArray.add(new CreditsScene());
         sceneArray.add(new EncounterScene());
-        sceneArray.add(new SettingsScene());
+        sceneArray.add((IScene) new DifficultySettings());
 
         // Initializing all scenes
         for (IScene scene : sceneArray) {
