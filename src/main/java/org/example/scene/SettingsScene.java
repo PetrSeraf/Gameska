@@ -15,14 +15,6 @@ public class SettingsScene implements IScene {
             manager.setCurrentScene(1);
             settingsManager.loop();
         }
-
-        if (line.contains("2")) {
-            manager.setCurrentScene(2);
-        }
-
-        if (line.contains("4")) {
-            //todo
-        }
     }
 
     @Override
