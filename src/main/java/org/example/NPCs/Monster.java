@@ -1,3 +1,4 @@
+
 package org.example.NPCs;
 
 public class Monster {

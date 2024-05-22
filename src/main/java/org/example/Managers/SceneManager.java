@@ -3,7 +3,6 @@ package org.example.Managers;
 
 
 import org.example.scene.*;
-import org.example.scene.Settings.DifficultySettings;
 
 import java.util.ArrayList;
 import java.util.Scanner;
