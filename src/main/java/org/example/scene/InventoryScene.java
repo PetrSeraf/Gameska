@@ -7,10 +7,10 @@ import java.util.List;
 
 public class InventoryScene implements IScene {
     private SceneManager manager;
-    private List<String> items;
+    private List<String> inventory;
 
     public InventoryScene() {
-        items = new ArrayList<>();
+        inventory = new ArrayList<>();
     }
 
     @Override
@@ -30,10 +30,10 @@ public class InventoryScene implements IScene {
     @Override
     public void render() {
         System.out.println("Inventory:");
-        if (items.isEmpty()) {
+        if (inventory.isEmpty()) {
             System.out.println("Your inventory is empty.");
         } else {
-            for (String item : items) {
+            for (String item : inventory) {
                 System.out.println("- " + item);
             }
         }
@@ -41,10 +41,10 @@ public class InventoryScene implements IScene {
     }
 
     public void addItem(String item) {
-        items.add(item);
+        inventory.add(item);
     }
 
     public void removeItem(String item) {
-        items.remove(item);
+        inventory.remove(item);
     }
 }
