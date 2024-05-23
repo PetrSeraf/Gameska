@@ -8,14 +8,14 @@ import java.util.List;
 public class Player {
     private int HP;
     private int DMG;
-    private double C_chance;
+    private double Crit;
     private String name;
     private List<IItem> inventory;
 
-    public Player(String name, int HP, int DMG, double C_chance) {
+    public Player(String name, int HP, int DMG, double Crit) {
         this.HP = HP;
         this.DMG = DMG;
-        this.C_chance = C_chance;
+        this.Crit = Crit;
         this.name = name;
 
     }
@@ -32,8 +32,8 @@ public class Player {
         return name;
     }
 
-    public double getC_chance() {
-        return C_chance;
+    public double getCrit() {
+        return Crit;
     }
 
     public void takeDamage(int damage) {
