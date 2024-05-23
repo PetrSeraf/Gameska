@@ -1,10 +1,14 @@
 package org.example.NPCs;
+import org.example.items.IItem;
+import java.util.ArrayList;
 
 public class Player {
     private int HP;
     private int DMG;
     private double C_chance;
     private String name;
+
+    public ArrayList<IItem> inventory;
 
     public Player(String name,int HP, int DMG, double C_chance) {
         this.HP = HP;
