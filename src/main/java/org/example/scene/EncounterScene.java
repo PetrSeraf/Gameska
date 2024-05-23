@@ -4,29 +4,24 @@ import org.example.NPCs.Monster;
 import org.example.NPCs.Player;
 import org.example.Managers.SceneManager;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class EncounterScene implements IScene {
     private SceneManager manager;
-    private ArrayList<Monster> monsters;
+    private List<Monster> monsters;
     private Monster currentMonster;
     private Player player;
     private boolean combatActive;
 
+    public EncounterScene(SceneManager manager) {
+        this.manager = manager;
+    }
+
     @Override
     public void init(SceneManager manager) {
         this.manager = manager;
-        monsters = new ArrayList<>();
-        monsters.add(new Monster("Zombie", 10, 10, 200));
-        monsters.add(new Monster("Troll", 5, 30, 500));
-        monsters.add(new Monster("Imp", 30, 20, 50));
-        monsters.add(new Monster("Devil", 40, 15, 40));
-        monsters.add(new Monster("Skeleton", 15, 15, 100));
-        monsters.add(new Monster("David",20,20,20));
-        monsters.add(new Monster("Petr",15,15,15));
-        monsters.add(new Monster("Wolf", 20, 25, 70));
-        monsters.add(new Monster("Squirrel", 100, 50, 10));
+        this.monsters = manager.getMonsters();
         player = new Player("Hero", 100, 20, 10);
         combatActive = false;
     }
@@ -75,7 +70,7 @@ public class EncounterScene implements IScene {
 
     private void playerAttack() {
         Random rand = new Random();
-        int playerAttack = rand.nextInt(50) + 30;
+        int playerAttack = rand.nextInt(30) + 7; // Random player attack strength between 7 and 26
         int damage = playerAttack - currentMonster.getDefense();
         if (damage > 0) {
             currentMonster.takeDamage(damage);
@@ -89,22 +84,21 @@ public class EncounterScene implements IScene {
             if (!player.isAlive()) {
                 System.out.println("You have been defeated by the " + currentMonster.getName() + "!");
                 resetPlayer();
-                resetMonster();
-                manager.setCurrentScene(1);
+                combatActive = false; // Combat ends when player dies
+                manager.setCurrentScene(1); // Return to map after player dies
             }
         } else {
             System.out.println("You defeated the " + currentMonster.getName() + "!");
             combatActive = false;
             resetPlayer();
-            resetMonster();
-            manager.setCurrentScene(1);
+            manager.setCurrentScene(1); // Return to map after combat
         }
     }
 
     private void monsterAttack() {
         Random rand = new Random();
         int monsterAttack = currentMonster.getAttack();
-        int playerDefense = rand.nextInt(20) + 1;
+        int playerDefense = rand.nextInt(20) + 1; // Random player defense between 1 and 20
         int damage = monsterAttack - playerDefense;
         if (damage > 0) {
             player.takeDamage(damage);
@@ -116,11 +110,5 @@ public class EncounterScene implements IScene {
 
     private void resetPlayer() {
         player.resetHP();
-    }
-
-    private void resetMonster() {
-        if (currentMonster != null) {
-            currentMonster.resetHealth();
-        }
     }
 }

@@ -3,27 +3,31 @@ package org.example.scene;
 import org.example.Managers.SceneManager;
 
 public class DifficultySettings implements IScene {
-    SceneManager manager;
+    private SceneManager manager;
 
     @Override
     public void init(SceneManager manager) {
-        this.manager=manager;
+        this.manager = manager;
     }
 
     @Override
     public void update(String line) {
-        switch(line)
-        {
-            case "1","2","3":
-            {
-                manager.setCurrentScene(1);
-            }
+        switch(line) {
+            case "1":
+                manager.setDifficultyLevel(1); // Easy
+                break;
+            case "2":
+                manager.setDifficultyLevel(2); // Medium
+                break;
+            case "3":
+                manager.setDifficultyLevel(3); // Hard
+                break;
             default:
+                System.out.println("Invalid choice. Please select 1, 2, or 3.");
+                return;
         }
-        switch(line)
-        {
-            case "1":{}
-        }
+        System.out.println("Difficulty set to " + (line.equals("1") ? "Easy" : line.equals("2") ? "Medium" : "Hard"));
+        manager.setCurrentScene(1); // Assuming 0 is the main scene index
     }
 
     @Override
