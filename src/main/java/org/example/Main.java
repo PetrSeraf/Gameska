@@ -2,8 +2,7 @@ package org.example;
 
 import org.example.Managers.SceneManager;
 import org.example.NPCs.Player;
-import org.example.items.Apple;
-import org.example.items.Sword;
+
 
 public class Main {
     public static void main(String[] args) {
