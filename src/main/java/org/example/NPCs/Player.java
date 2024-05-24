@@ -45,7 +45,7 @@ public class Player {
     }
 
     public void resetHP() {
-        this.HP = 50;
+        this.HP = 100;
     }
 
     public void heal(int amount) {
