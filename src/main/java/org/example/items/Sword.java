@@ -23,6 +23,7 @@ public class Sword implements IItem, IEquipable {
     @Override
     public void onEquip() {
         player.setDMG(player.getDMG() + damageIncrease);
+        System.out.println("You fell stronger :D");
     }
 
 }
