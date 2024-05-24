@@ -29,6 +29,7 @@ public class SceneManager {
         sceneArray.add(new EncounterScene(this));
         sceneArray.add(new DifficultySettings());
         sceneArray.add(new InventoryScene(player));
+        sceneArray.add(new GameOverScene());
 
         difficultyLevel = 2;
         monsters = new ArrayList<>();
@@ -74,10 +75,10 @@ public class SceneManager {
         List<IItem> skeletonLoot = new ArrayList<>();
         skeletonLoot.add(new Sword(player));
 
-        monsters.add(new Monster("Zombie", 10, 10, 200, zombieLoot));
-        monsters.add(new Monster("Skeleton", 15, 15, 100, skeletonLoot));
-        monsters.add(new Monster("Wolf", 20, 15, 70, new ArrayList<>()));
-        monsters.add(new Monster("Squirrel", 50, 1, 10, new ArrayList<>()));
+        monsters.add(new Monster("Zombie", 100, 10, 200, zombieLoot));
+        monsters.add(new Monster("Skeleton", 150, 15, 100, skeletonLoot));
+        monsters.add(new Monster("Wolf", 200, 15, 70, new ArrayList<>()));
+        monsters.add(new Monster("Squirrel", 500, 1, 10, new ArrayList<>()));
 
         updateMonsterStats();
     }

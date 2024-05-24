@@ -89,7 +89,7 @@ public class EncounterScene implements IScene {
                 System.out.println("You have been defeated by the " + currentMonster.getName() + "!");
                 resetPlayer();
                 combatActive = false; // Combat ends when player dies
-                manager.setCurrentScene(6); // Return to map after player dies
+                manager.setCurrentScene(6);
             }
         } else {
             System.out.println("You defeated the " + currentMonster.getName() + "!");
