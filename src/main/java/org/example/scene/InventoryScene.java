@@ -1,16 +1,17 @@
 package org.example.scene;
 
 import org.example.Managers.SceneManager;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.example.NPCs.Player;
+import org.example.items.IConsumeable;
+import org.example.items.IItem;
+import org.example.items.IEquipable;
 
 public class InventoryScene implements IScene {
     private SceneManager manager;
-    private List<String> inventory;
+    private Player player;
 
-    public InventoryScene() {
-        inventory = new ArrayList<>();
+    public InventoryScene(Player player) {
+        this.player = player;
     }
 
     @Override
@@ -20,31 +21,41 @@ public class InventoryScene implements IScene {
 
     @Override
     public void update(String line) {
-        if (line.equalsIgnoreCase("back")) {
-            manager.setCurrentScene(1); // Assuming 2 is the GameMapScene
-        } else {
-            System.out.println("Invalid command. Use 'back' to return to the game.");
+        try {
+            int itemIndex = Integer.parseInt(line);
+            if (itemIndex >= 0 && itemIndex < player.inventory.size()) {
+                IItem item = player.inventory.get(itemIndex);
+                if (item instanceof IConsumeable) {
+                    player.consumeItem(item);
+                } else if (item instanceof IEquipable) {
+                    player.equipItem(item);
+                }
+            } else {
+                System.out.println("Invalid item index.");
+            }
+        } catch (NumberFormatException e) {
+            if (line.equalsIgnoreCase("back")) {
+                manager.setCurrentScene(1); // Assuming 1 is the GameMapScene
+            } else {
+                System.out.println("Invalid command. Use 'back' to return to the game.");
+            }
         }
     }
 
-    @Override
-    public void render() {
-        System.out.println("Inventory:");
-        if (inventory.isEmpty()) {
+    public void displayInventory() {
+        System.out.println("Player Inventory:");
+        if (player.inventory.isEmpty()) {
             System.out.println("Your inventory is empty.");
         } else {
-            for (String item : inventory) {
-                System.out.println("- " + item);
+            for (int i = 0; i < player.inventory.size(); i++) {
+                System.out.println("[" + i + "] " + player.inventory.get(i).getName());
             }
         }
         System.out.println("Commands: 'back'");
     }
 
-    public void addItem(String item) {
-        inventory.add(item);
-    }
-
-    public void removeItem(String item) {
-        inventory.remove(item);
+    @Override
+    public void render() {
+        displayInventory();
     }
 }

@@ -1,8 +1,9 @@
 package org.example.scene;
 
+import org.example.Managers.SceneManager;
 import org.example.NPCs.Monster;
 import org.example.NPCs.Player;
-import org.example.Managers.SceneManager;
+import org.example.items.IItem;
 
 import java.util.List;
 import java.util.Random;
@@ -22,7 +23,7 @@ public class EncounterScene implements IScene {
     public void init(SceneManager manager) {
         this.manager = manager;
         this.monsters = manager.getMonsters();
-        player = new Player("Hero", 10, 20, 10);
+        player = manager.getPlayer();
         combatActive = false;
     }
 
@@ -43,8 +44,11 @@ public class EncounterScene implements IScene {
                     System.out.println("No monster to attack. Use 'c' to initiate combat.");
                 }
                 break;
+            case "i":
+                manager.setCurrentScene(6);
+                break;
             default:
-                System.out.println("Invalid command. Use 'c' for combat, 'a' to attack.");
+                System.out.println("Invalid command. Use 'c' for combat, 'a' to attack, 'i' to access inventory.");
                 return;
         }
     }
@@ -89,22 +93,31 @@ public class EncounterScene implements IScene {
             }
         } else {
             System.out.println("You defeated the " + currentMonster.getName() + "!");
+            handleLoot(currentMonster.getLoot());
             combatActive = false;
             resetPlayer();
             manager.setCurrentScene(1); // Return to map after combat
         }
     }
 
+    private void handleLoot(List<IItem> loot) {
+        System.out.println("You have obtained the following items:");
+        for (IItem item : loot) {
+            player.inventory.add(item);
+            System.out.println("- " + item.getName());
+        }
+    }
+
     private void monsterAttack() {
         Random rand = new Random();
         int monsterAttack = currentMonster.getAttack();
-        int playerDefense = rand.nextInt(20) + 1; // Random player defense between 1 and 20
+        int playerDefense = rand.nextInt(25) + 5; // Random player defense between 1 and 20
         int damage = monsterAttack - playerDefense;
         if (damage > 0) {
             player.takeDamage(damage);
             System.out.println("The " + currentMonster.getName() + " hits you for " + damage + " damage!");
         } else {
-            System.out.println("You blocked the " + currentMonster.getName() + "'s attack!");
+            System.out.println("You blocked the " + currentMonster.getName() + "!");
         }
     }
 
