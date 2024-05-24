@@ -94,8 +94,9 @@ public class GameMapScene implements IScene {
                 if (playerX < mapWidth - 1) newX = playerX + 1;
                 break;
             case "i": manager.setCurrentScene(5);
+            case "e": manager.setCurrentScene(0);
             default:
-                System.out.println("Invalid command. Use 'w' for up, 's' for down, 'a' for left, or 'd' for right, 'i' for inventory.");
+                System.out.println("Invalid command. Use 'w' for up, 's' for down, 'a' for left, or 'd' for right, 'i' for inventory, 'e' to exit.");
                 return;
         }
 

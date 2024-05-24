@@ -22,7 +22,7 @@ public class EncounterScene implements IScene {
     public void init(SceneManager manager) {
         this.manager = manager;
         this.monsters = manager.getMonsters();
-        player = new Player("Hero", 50, 20, 10);
+        player = new Player("Hero", 100, 20, 10);
         combatActive = false;
     }
 
