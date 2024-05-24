@@ -15,6 +15,7 @@ public class SceneManager {
     private int difficultyLevel;
     private List<Monster> monsters;
     private Player player;
+    private GameMapScene gameMapScene;
 
     public SceneManager(Player player) {
         this.player = player;
@@ -55,6 +56,10 @@ public class SceneManager {
         if (newIndex >= sceneArray.size())
             return;
         index = newIndex;
+    }
+
+    public GameMapScene getGameMapScene() {
+        return gameMapScene;
     }
 
     public void loop() {
