@@ -96,6 +96,7 @@ public class EncounterScene implements IScene {
             handleLoot(currentMonster.getLoot());
             combatActive = false;
             resetPlayer();
+
             manager.setCurrentScene(1);
         }
     }
