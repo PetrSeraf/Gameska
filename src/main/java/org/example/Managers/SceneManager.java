@@ -2,6 +2,9 @@ package org.example.Managers;
 
 import org.example.NPCs.Monster;
 import org.example.NPCs.Player;
+import org.example.items.Apple;
+import org.example.items.IItem;
+import org.example.items.Sword;
 import org.example.scene.*;
 
 import java.util.ArrayList;
@@ -9,33 +12,40 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SceneManager {
-    public ArrayList<IScene> sceneArray;
+    private List<IScene> sceneArray;
     private int index;
     private int difficultyLevel;
     private List<Monster> monsters;
-    private Player player; // Add a reference to the player
+    private Player player;
 
     public SceneManager(Player player) {
-        this.player = player; // Initialize the player reference
+        this.player = player;
         sceneArray = new ArrayList<>();
         index = 0;
 
-        // Adding scenes to array
         sceneArray.add(new MainScene());
         sceneArray.add(new GameMapScene());
         sceneArray.add(new CreditsScene());
         sceneArray.add(new EncounterScene(this));
         sceneArray.add(new DifficultySettings());
-        sceneArray.add(new InventoryScene(player)); // Pass the player to InventoryScene
+        sceneArray.add(new InventoryScene(player));
 
-        difficultyLevel = 2; // Default to Medium
+        difficultyLevel = 2;
         monsters = new ArrayList<>();
         initializeMonsters();
 
-        // Initializing all scenes
+
         for (IScene scene : sceneArray) {
             scene.init(this);
         }
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public List<Monster> getMonsters() {
+        return monsters;
     }
 
     public IScene getCurrentScene() {
@@ -59,10 +69,16 @@ public class SceneManager {
     }
 
     private void initializeMonsters() {
-        monsters.add(new Monster("Zombie", 10, 10, 200));
-        monsters.add(new Monster("Skeleton", 15, 15, 100));
-        monsters.add(new Monster("Wolf", 20, 25, 70));
-        monsters.add(new Monster("Squirrel", 100, 50, 10));
+        List<IItem> zombieLoot = new ArrayList<>();
+        zombieLoot.add(new Apple(player));
+        List<IItem> skeletonLoot = new ArrayList<>();
+        skeletonLoot.add(new Sword(player));
+
+        monsters.add(new Monster("Zombie", 10, 10, 200, zombieLoot));
+        monsters.add(new Monster("Skeleton", 15, 15, 100, skeletonLoot));
+        monsters.add(new Monster("Wolf", 20, 15, 70, new ArrayList<>()));
+        monsters.add(new Monster("Squirrel", 50, 1, 10, new ArrayList<>()));
+
         updateMonsterStats();
     }
 
@@ -73,10 +89,6 @@ public class SceneManager {
 
     public int getDifficultyLevel() {
         return difficultyLevel;
-    }
-
-    public List<Monster> getMonsters() {
-        return monsters;
     }
 
     private void updateMonsterStats() {
@@ -97,9 +109,5 @@ public class SceneManager {
             }
             monster.resetHealth();
         }
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 }

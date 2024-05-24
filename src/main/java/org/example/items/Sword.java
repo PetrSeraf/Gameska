@@ -19,13 +19,10 @@ public class Sword implements IItem, IEquipable {
     public boolean canBeEquiped() {
         return true;
     }
-    public boolean canBeConsumed() {
-        return false;
-    }
 
     @Override
     public void onEquip() {
-        player.setDMG(player.getDMG() + damageIncrease); // Increase player's damage
+        player.setDMG(player.getDMG() + damageIncrease);
     }
 
 }

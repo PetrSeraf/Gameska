@@ -10,11 +10,7 @@ public class Main {
         Player player = new Player("John", 100, 10, 0.5);
         SceneManager sceneManager = new SceneManager(player);
 
-        // Add items to player's inventory
-        player.inventory.add(new Apple(player));
-        player.inventory.add(new Sword(player));
-
         System.out.println("Starting game:");
-        sceneManager.loop(); // Start the game loop
+        sceneManager.loop();
     }
 }

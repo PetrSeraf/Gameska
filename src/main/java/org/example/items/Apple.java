@@ -15,13 +15,10 @@ public class Apple implements IItem, IConsumeable {
         return true;
 
     }
-    public boolean canBeEquiped() {
-        return false;
-    }
 
     @Override
     public void onConsume() {
-        player.heal(healthRestoration);
+        System.out.println("You had your pause hope you enjoyed it :)");
     }
 
     @Override
