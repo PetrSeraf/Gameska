@@ -74,7 +74,7 @@ public class EncounterScene implements IScene {
 
     private void playerAttack() {
         Random rand = new Random();
-        int playerAttack = rand.nextInt(30) + 7; // Random player attack strength between 7 and 26
+        int playerAttack = rand.nextInt(30) + 7;
         int damage = playerAttack - currentMonster.getDefense();
         if (damage > 0) {
             currentMonster.takeDamage(damage);
@@ -96,7 +96,7 @@ public class EncounterScene implements IScene {
             handleLoot(currentMonster.getLoot());
             combatActive = false;
             resetPlayer();
-            manager.setCurrentScene(1); // Return to map after combat
+            manager.setCurrentScene(1);
         }
     }
 
@@ -111,7 +111,7 @@ public class EncounterScene implements IScene {
     private void monsterAttack() {
         Random rand = new Random();
         int monsterAttack = currentMonster.getAttack();
-        int playerDefense = rand.nextInt(25) + 5; // Random player defense between 1 and 20
+        int playerDefense = rand.nextInt(1) + 5;
         int damage = monsterAttack - playerDefense;
         if (damage > 0) {
             player.takeDamage(damage);

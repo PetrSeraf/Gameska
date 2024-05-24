@@ -25,6 +25,6 @@ public class CreditsScene implements IScene {
     public void render() {
         System.out.println("Trun base game War Of Trans created by David and Peter as a project in tietoevry in 2024");
         System.out.println("Move using Words Up Down Left Right ");
-        System.out.println("Use E for escape");
+        System.out.println("Use e for escape");
     }
 }
