@@ -9,9 +9,11 @@ public class Apple implements IItem, IConsumeable {
         this.player = player;
     }
 
+    private int restHP=10;
     @Override
     public boolean canBeConsumed() {
         return true;
+
     }
     public boolean canBeEquiped() {
         return false;

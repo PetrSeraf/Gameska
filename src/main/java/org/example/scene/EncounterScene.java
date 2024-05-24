@@ -22,7 +22,7 @@ public class EncounterScene implements IScene {
     public void init(SceneManager manager) {
         this.manager = manager;
         this.monsters = manager.getMonsters();
-        player = new Player("Hero", 100, 20, 10);
+        player = new Player("Hero", 50, 20, 10);
         combatActive = false;
     }
 
@@ -85,7 +85,7 @@ public class EncounterScene implements IScene {
                 System.out.println("You have been defeated by the " + currentMonster.getName() + "!");
                 resetPlayer();
                 combatActive = false; // Combat ends when player dies
-                manager.setCurrentScene(1); // Return to map after player dies
+                manager.setCurrentScene(6); // Return to map after player dies
             }
         } else {
             System.out.println("You defeated the " + currentMonster.getName() + "!");
