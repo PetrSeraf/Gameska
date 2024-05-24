@@ -1,67 +1,61 @@
 package org.example.scene;
 
 import org.example.Managers.SceneManager;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import org.example.NPCs.Player;
+import org.example.items.IConsumeable;
+import org.example.items.IItem;
+import org.example.items.IEquipable;
 
 public class InventoryScene implements IScene {
     private SceneManager manager;
-    private List<String> items;
+    private Player player;
 
-    public InventoryScene() {
-        items = new ArrayList<>();
+    public InventoryScene(Player player) {
+        this.player = player;
     }
 
     @Override
     public void init(SceneManager manager) {
         this.manager = manager;
-        // Initialize inventory with some items for demonstration
-        items.add("Sword");
-        items.add("Shield");
-        items.add("Potion");
     }
 
     @Override
     public void update(String line) {
-        Scanner scanner = new Scanner(System.in);
-
-        switch (line.toLowerCase()) {
-            case "add":
-                System.out.println("Enter the name of the item to add:");
-                String newItem = scanner.nextLine();
-                items.add(newItem);
-                System.out.println(newItem + " has been added to your inventory.");
-                break;
-            case "remove":
-                System.out.println("Enter the name of the item to remove:");
-                String itemToRemove = scanner.nextLine();
-                if (items.remove(itemToRemove)) {
-                    System.out.println(itemToRemove + " has been removed from your inventory.");
-                } else {
-                    System.out.println("Item not found in inventory.");
+        try {
+            int itemIndex = Integer.parseInt(line);
+            if (itemIndex >= 0 && itemIndex < player.inventory.size()) {
+                IItem item = player.inventory.get(itemIndex);
+                if (item instanceof IConsumeable) {
+                    player.consumeItem(item);
+                } else if (item instanceof IEquipable) {
+                    player.equipItem(item);
                 }
-                break;
-            case "back":
-                manager.setCurrentScene(2); // Assuming 2 is the GameMapScene
-                break;
-            default:
-                System.out.println("Invalid command. Use 'add' to add an item, 'remove' to remove an item, 'back' to return to the game.");
-                break;
+            } else {
+                System.out.println("Invalid item index.");
+            }
+        } catch (NumberFormatException e) {
+            if (line.equalsIgnoreCase("back")) {
+                manager.setCurrentScene(1); // Assuming 1 is the GameMapScene
+            } else {
+                System.out.println("Invalid command. Use 'back' to return to the game.");
+            }
         }
+    }
+
+    public void displayInventory() {
+        System.out.println("Player Inventory:");
+        if (player.inventory.isEmpty()) {
+            System.out.println("Your inventory is empty.");
+        } else {
+            for (int i = 0; i < player.inventory.size(); i++) {
+                System.out.println("[" + i + "] " + player.inventory.get(i).getName());
+            }
+        }
+        System.out.println("Commands: 'back'");
     }
 
     @Override
     public void render() {
-        System.out.println("Inventory:");
-        if (items.isEmpty()) {
-            System.out.println("Your inventory is empty.");
-        } else {
-            for (String item : items) {
-                System.out.println("- " + item);
-            }
-        }
-        System.out.println("Commands: 'add', 'remove', 'back'");
+        displayInventory();
     }
 }

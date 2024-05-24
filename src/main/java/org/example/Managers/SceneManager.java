@@ -1,6 +1,7 @@
 package org.example.Managers;
 
 import org.example.NPCs.Monster;
+import org.example.NPCs.Player;
 import org.example.scene.*;
 
 import java.util.ArrayList;
@@ -12,18 +13,10 @@ public class SceneManager {
     private int index;
     private int difficultyLevel;
     private List<Monster> monsters;
+    private Player player; // Add a reference to the player
 
-    public IScene getCurrentScene() {
-        return sceneArray.get(index);
-    }
-
-    public void setCurrentScene(int newIndex) {
-        if (newIndex >= sceneArray.size())
-            return;
-        index = newIndex;
-    }
-
-    public SceneManager() {
+    public SceneManager(Player player) {
+        this.player = player; // Initialize the player reference
         sceneArray = new ArrayList<>();
         index = 0;
 
@@ -33,7 +26,7 @@ public class SceneManager {
         sceneArray.add(new CreditsScene());
         sceneArray.add(new EncounterScene(this));
         sceneArray.add(new DifficultySettings());
-        sceneArray.add(new InventoryScene());
+        sceneArray.add(new InventoryScene(player)); // Pass the player to InventoryScene
 
         difficultyLevel = 2; // Default to Medium
         monsters = new ArrayList<>();
@@ -43,6 +36,16 @@ public class SceneManager {
         for (IScene scene : sceneArray) {
             scene.init(this);
         }
+    }
+
+    public IScene getCurrentScene() {
+        return sceneArray.get(index);
+    }
+
+    public void setCurrentScene(int newIndex) {
+        if (newIndex >= sceneArray.size())
+            return;
+        index = newIndex;
     }
 
     public void loop() {
@@ -94,5 +97,9 @@ public class SceneManager {
             }
             monster.resetHealth();
         }
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

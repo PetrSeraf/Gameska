@@ -1,4 +1,8 @@
 package org.example.NPCs;
+
+import org.example.items.IConsumeable;
+import org.example.items.IItem;
+import org.example.items.IEquipable;
 import java.util.ArrayList;
 
 public class Player {
@@ -6,14 +10,14 @@ public class Player {
     private int DMG;
     private double C_chance;
     private String name;
+    public ArrayList<IItem> inventory;
 
-
-
-    public Player(String name,int HP, int DMG, double C_chance) {
+    public Player(String name, int HP, int DMG, double C_chance) {
         this.HP = HP;
         this.DMG = DMG;
         this.C_chance = C_chance;
         this.name = name;
+        this.inventory = new ArrayList<>();
     }
 
     public int getHP() {
@@ -22,6 +26,10 @@ public class Player {
 
     public int getDMG() {
         return DMG;
+    }
+
+    public void setDMG(int DMG) {
+        this.DMG = DMG;
     }
 
     public String getName() {
@@ -39,7 +47,33 @@ public class Player {
     public boolean isAlive() {
         return this.HP > 0;
     }
+
     public void resetHP() {
         this.HP = 100;
+    }
+
+    public void heal(int amount) {
+        this.HP += amount;
+        // Optional: You can add a max HP limit if needed
+        // this.HP = Math.min(this.HP + amount, maxHP);
+    }
+
+    public void consumeItem(IItem item) {
+        if (item instanceof IConsumeable) {
+            IConsumeable consumable = (IConsumeable) item;
+            if (consumable.canBeConsumed()) {
+                consumable.onConsume();
+                inventory.remove(item); // Remove item from inventory after consumption
+            }
+        }
+    }
+
+    public void equipItem(IItem item) {
+        if (item instanceof IEquipable) {
+            IEquipable equipable = (IEquipable) item;
+            if (equipable.canBeEquiped()) {
+                equipable.onEquip();
+            }
+        }
     }
 }
