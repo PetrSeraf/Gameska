@@ -2,9 +2,7 @@ package org.example.Managers;
 
 import org.example.NPCs.Monster;
 import org.example.NPCs.Player;
-import org.example.items.Apple;
-import org.example.items.IItem;
-import org.example.items.Sword;
+import org.example.items.*;
 import org.example.scene.*;
 
 import java.util.ArrayList;
@@ -74,11 +72,15 @@ public class SceneManager {
         zombieLoot.add(new Apple(player));
         List<IItem> skeletonLoot = new ArrayList<>();
         skeletonLoot.add(new Sword(player));
+        List<IItem> squirrelLoot = new ArrayList<>();
+        squirrelLoot.add(new Pear(player));
+        List<IItem> wolfLoot = new ArrayList<>();
+        wolfLoot.add(new Mace(player));
 
-        monsters.add(new Monster("Zombie", 100, 10, 200, zombieLoot));
-        monsters.add(new Monster("Skeleton", 150, 15, 100, skeletonLoot));
-        monsters.add(new Monster("Wolf", 200, 15, 70, new ArrayList<>()));
-        monsters.add(new Monster("Squirrel", 500, 1, 10, new ArrayList<>()));
+        monsters.add(new Monster("Zombie", 10, 10, 200, zombieLoot));
+        monsters.add(new Monster("Skeleton", 15, 15, 100, skeletonLoot));
+        monsters.add(new Monster("Wolf", 20, 15, 70, wolfLoot));
+        monsters.add(new Monster("Squirrel", 50, 1, 10, squirrelLoot));
 
         updateMonsterStats();
     }

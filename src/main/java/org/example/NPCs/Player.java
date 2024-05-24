@@ -76,4 +76,8 @@ public class Player {
             }
         }
     }
+
+    public void addToInventory(IItem item) {
+        inventory.add(item);
+    }
 }

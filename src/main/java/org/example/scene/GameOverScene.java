@@ -16,14 +16,17 @@ public class GameOverScene implements IScene {
             case "q":
                 System.exit(0);
                 break;
+            case "r":
+                manager.setCurrentScene(1);
+                break;
             default:
-                System.out.println("Invalid command. Use 'q' to quit.");
+                System.out.println("Invalid command. Use 'q' to quit and use 'r' to restart!");
         }
     }
 
     @Override
     public void render() {
         System.out.println("Game Over!");
-        System.out.println("Press 'q' to quit.");
+        System.out.println("Press 'q' to quit and use 'r' to restart!");
     }
 }

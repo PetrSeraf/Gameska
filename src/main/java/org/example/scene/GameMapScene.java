@@ -5,7 +5,7 @@ import org.example.Managers.SceneManager;
 import java.util.Random;
 
 public class GameMapScene implements IScene {
-    SceneManager manager;
+    private SceneManager manager;
     private int playerX;
     private int playerY;
     private boolean[][] blindmap;
@@ -17,16 +17,26 @@ public class GameMapScene implements IScene {
     @Override
     public void init(SceneManager manager) {
         this.manager = manager;
-        this.playerX = mapWidth / 2;
-        this.playerY = mapHeight / 2;
 
+        // Initialize map arrays
         blindmap = new boolean[mapHeight][mapWidth];
         monsterEncounter = new boolean[mapHeight][mapWidth];
         restrictedAreas = new boolean[mapHeight][mapWidth];
 
+        // Generate map features
         generateMonsterEncounters(200);
         generateBlindSpots(400);
         generateRestrictedAreas();
+
+        // Find a valid starting position for the player
+        Random rand = new Random();
+        do {
+            playerX = rand.nextInt(mapWidth);
+            playerY = rand.nextInt(mapHeight);
+        } while (restrictedAreas[playerY][playerX]);
+
+        // Mark the starting position as not a blind spot
+        blindmap[playerY][playerX] = false;
     }
 
     private void generateBlindSpots(int numBlindSpots) {
@@ -36,10 +46,11 @@ public class GameMapScene implements IScene {
             do {
                 x = rand.nextInt(mapWidth);
                 y = rand.nextInt(mapHeight);
-            } while (blindmap[y][x] || restrictedAreas[y][x]|| monsterEncounter[y][x]);
+            } while (blindmap[y][x] || restrictedAreas[y][x] || monsterEncounter[y][x]);
             blindmap[y][x] = true;
         }
     }
+
     private void generateMonsterEncounters(int numMonsterEncounters) {
         Random rand = new Random();
         for (int i = 0; i < numMonsterEncounters; i++) {
@@ -47,7 +58,7 @@ public class GameMapScene implements IScene {
             do {
                 x = rand.nextInt(mapWidth);
                 y = rand.nextInt(mapHeight);
-            } while (blindmap[y][x] || restrictedAreas[y][x]||monsterEncounter[y][x]);
+            } while (blindmap[y][x] || restrictedAreas[y][x] || monsterEncounter[y][x]);
             monsterEncounter[y][x] = true;
         }
     }
@@ -60,9 +71,9 @@ public class GameMapScene implements IScene {
             int areaSize = rand.nextInt(20) + 10;
             int x, y;
             do {
-                x = rand.nextInt(mapWidth);
-                y = rand.nextInt(mapHeight);
-            } while (blindmap[y][x] || restrictedAreas[y][x] || monsterEncounter[y][x] || areaSize + x >= mapWidth || areaSize + y >= mapHeight);
+                x = rand.nextInt(mapWidth - areaSize);
+                y = rand.nextInt(mapHeight - areaSize);
+            } while (blindmap[y][x] || restrictedAreas[y][x] || monsterEncounter[y][x]);
             for (int j = 0; j < areaSize; j++) {
                 for (int k = 0; k < areaSize; k++) {
                     restrictedAreas[y + j][x + k] = true;
@@ -74,7 +85,6 @@ public class GameMapScene implements IScene {
     private boolean isRestrictedArea(int x, int y) {
         return restrictedAreas[y][x];
     }
-
     @Override
     public void update(String line) {
         int newX = playerX;

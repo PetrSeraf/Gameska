@@ -3,7 +3,7 @@ package org.example.scene;
 import org.example.Managers.SceneManager;
 import org.example.NPCs.Monster;
 import org.example.NPCs.Player;
-import org.example.items.IItem;
+import org.example.items.*;
 
 import java.util.List;
 import java.util.Random;
@@ -103,15 +103,25 @@ public class EncounterScene implements IScene {
     private void handleLoot(List<IItem> loot) {
         System.out.println("You have obtained the following items:");
         for (IItem item : loot) {
-            player.inventory.add(item);
-            System.out.println("- " + item.getName());
+            if (item instanceof Pear || item instanceof Mace || item instanceof Sword || item instanceof Apple) {
+                Random rand = new Random();
+                int dropChance = rand.nextInt(100);
+                if (dropChance <30) {
+                    player.inventory.add(item);
+                    System.out.println("- " + item.getName());
+                }
+                else System.out.println("You are unlucky nothing dropped");
+            } else {
+                player.inventory.add(item);
+                System.out.println("- " + item.getName());
+            }
         }
     }
 
     private void monsterAttack() {
         Random rand = new Random();
         int monsterAttack = currentMonster.getAttack();
-        int playerDefense = rand.nextInt(1) + 5;
+        int playerDefense = rand.nextInt(20) + 5;
         int damage = monsterAttack - playerDefense;
         if (damage > 0) {
             player.takeDamage(damage);

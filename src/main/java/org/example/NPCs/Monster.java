@@ -2,7 +2,9 @@ package org.example.NPCs;
 
 import org.example.items.IItem;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Monster {
     private String name;
@@ -95,5 +97,20 @@ public class Monster {
 
     public void setLoot(List<IItem> loot) {
         this.loot = loot;
+    }
+    public void dropLoot(Player player) {
+        Random rand = new Random();
+        int numItemsToDrop = rand.nextInt(loot.size()) + 1; // Randomly determine how many items to drop
+        List<IItem> droppedItems = new ArrayList<>();
+
+        for (int i = 0; i < numItemsToDrop; i++) {
+            int randomIndex = rand.nextInt(loot.size());
+            droppedItems.add(loot.get(randomIndex));
+        }
+
+        for (IItem item : droppedItems) {
+            player.addToInventory(item);
+            System.out.println("You obtained: " + item.getName());
+        }
     }
 }
