@@ -34,6 +34,7 @@ public class SceneManager {
         sceneArray.add(new EncounterScene(this));
         sceneArray.add(new DifficultySettings());
         sceneArray.add(new InventoryScene());
+        sceneArray.add(new GameOverScene());
 
         difficultyLevel = 2; // Default to Medium
         monsters = new ArrayList<>();

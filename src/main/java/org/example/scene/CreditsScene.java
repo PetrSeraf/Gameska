@@ -12,7 +12,13 @@ public class CreditsScene implements IScene {
 
     @Override
     public void update(String line) {
-
+        switch (line.toLowerCase()) {
+            case "b":
+                manager.setCurrentScene(0);
+                break;
+            default:
+                System.out.println("Press 'b' to go back to the previous scene.");
+        }
     }
 
     @Override
